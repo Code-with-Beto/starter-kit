@@ -15,7 +15,10 @@ export default function HomeScreen() {
         />
       }
     >
-      <Input placeholder="Search" />
+      <Input placeholder="Search" color="white" variant="outline" />
+      <Input placeholder="Search" color="white" variant="soft" />
+      <Input placeholder="Search" color="white" variant="subtle" />
+      <Input placeholder="Search" color="white" variant="underline" />
     </ParallaxScrollView>
   );
 }
