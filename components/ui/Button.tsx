@@ -1,89 +1,22 @@
-import { Color } from "@/constants/TWPalette";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import {
+  ColorConfig,
+  getColorValue,
+  RADIUS_VALUES,
+  UIColor,
+  UIRadius,
+  UISize,
+} from "@/types/ui";
 import { SFSymbol } from "expo-symbols";
 import React, { useEffect, useMemo, useRef } from "react";
 import { Animated, Pressable, StyleSheet, ViewStyle } from "react-native";
 import { Icon } from "./Icon";
 import { Text } from "./Text";
 
-type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 type ButtonVariant = "solid" | "outline" | "soft" | "subtle" | "link";
-type ButtonRadius =
-  | "none"
-  | "xxs"
-  | "xs"
-  | "sm"
-  | "md"
-  | "default"
-  | "lg"
-  | "xl"
-  | "full";
-
-type ButtonColor =
-  | "slate"
-  | "gray"
-  | "zinc"
-  | "neutral"
-  | "stone"
-  | "red"
-  | "orange"
-  | "amber"
-  | "yellow"
-  | "lime"
-  | "green"
-  | "emerald"
-  | "teal"
-  | "cyan"
-  | "sky"
-  | "blue"
-  | "indigo"
-  | "violet"
-  | "purple"
-  | "fuchsia"
-  | "pink"
-  | "rose"
-  | "black"
-  | "white";
-
-const RADIUS_VALUES: Record<ButtonRadius, number> = {
-  none: 0,
-  xxs: 4,
-  xs: 6,
-  sm: 8,
-  md: 12,
-  default: 14,
-  lg: 16,
-  xl: 20,
-  full: 32,
-};
-
-interface ColorConfig {
-  backgroundColor: string;
-  borderColor: string;
-  textColor: string;
-  borderWidth: number;
-}
-
-const getColorValue = (color: ButtonColor, shade: number = 500): string => {
-  if (color === "black") {
-    return (
-      Color.grayscale[shade as keyof typeof Color.grayscale] ||
-      Color.grayscale[500]
-    );
-  }
-  if (color === "white") {
-    return (
-      Color.grayscale[shade as keyof typeof Color.grayscale] ||
-      Color.grayscale[500]
-    );
-  }
-
-  const colorObj = Color[color] as any;
-  return colorObj[shade] || colorObj[500] || colorObj.DEFAULT;
-};
 
 const generateVariantConfig = (
-  color: ButtonColor,
+  color: UIColor,
   colorScheme: "light" | "dark"
 ): Record<ButtonVariant, ColorConfig> => {
   const isDark = colorScheme === "dark";
@@ -211,9 +144,9 @@ interface ButtonProps {
   loading?: boolean;
   selected?: boolean;
   variant?: ButtonVariant;
-  color?: ButtonColor;
-  size?: ButtonSize;
-  radius?: ButtonRadius;
+  color?: UIColor;
+  size?: UISize;
+  radius?: UIRadius;
   style?: ViewStyle;
   symbol?: string;
 }

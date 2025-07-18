@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/Button";
 import { Image } from "expo-image";
 import { StyleSheet } from "react-native";
 
 import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { Input } from "@/components/ui/Input";
 
 export default function HomeScreen() {
   return (
@@ -15,43 +15,7 @@ export default function HomeScreen() {
         />
       }
     >
-      <Button
-        title="Click me"
-        variant="solid"
-        color="black"
-        radius="full"
-        onPress={() => {}}
-      />
-      <Button
-        title="Click me"
-        variant="outline"
-        color="indigo"
-        size="xs"
-        radius="none"
-        onPress={() => {}}
-      />
-      <Button
-        title="Click me"
-        radius="sm"
-        size="xl"
-        variant="soft"
-        color="red"
-        onPress={() => {}}
-        symbol="arrow.right"
-      />
-      <Button
-        title="Click me"
-        variant="subtle"
-        color="violet"
-        onPress={() => {}}
-      />
-
-      <Button
-        title="Click me"
-        variant="link"
-        color="yellow"
-        onPress={() => {}}
-      />
+      <Input placeholder="Search" />
     </ParallaxScrollView>
   );
 }
