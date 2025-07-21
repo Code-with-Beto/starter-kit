@@ -180,7 +180,6 @@ export const Input = forwardRef<TextInput, ThemedInputProps>(
         ];
       }
 
-      // Standard styling for other variants
       return [
         styles.input,
         SIZE_STYLES[size],
@@ -209,7 +208,7 @@ export const Input = forwardRef<TextInput, ThemedInputProps>(
 Input.displayName = "Input";
 
 const styles = StyleSheet.create({
-  input: { paddingHorizontal: 16 },
+  input: { paddingHorizontal: 16, width: "100%" },
   xs: { height: 28 },
   sm: { height: 36 },
   md: { height: 48 },
