@@ -1,18 +1,17 @@
+import { UISize } from "@/types/ui";
 import { SFSymbol, SymbolView } from "expo-symbols";
 import React from "react";
 import { StyleSheet, ViewStyle } from "react-native";
 
-type IconSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-
 interface IconProps {
   symbol: SFSymbol;
-  size?: IconSize | number;
+  size?: UISize | number;
   color?: string;
   style?: ViewStyle;
   type?: "monochrome" | "hierarchical" | "palette" | "multicolor";
 }
 
-const sizeMap: Record<IconSize, number> = {
+const sizeMap: Record<UISize, number> = {
   xs: 14,
   sm: 18,
   md: 22,
@@ -36,6 +35,7 @@ export const Icon: React.FC<IconProps> = ({
       style={[styles.symbol, { width: iconSize, height: iconSize }, style]}
       tintColor={color}
       type={type}
+      resizeMode="scaleAspectFit"
     />
   );
 };
