@@ -1,50 +1,143 @@
-# Welcome to your Expo app 👋
+# Expo Starter Kit
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A minimal and clean Expo starter kit with essential UI components ready to use. Includes a set of customizable components with a consistent color system inspired by TailwindCSS.
 
-## Get started
+## Quick Start
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. Clone and install:
 
 ```bash
-npm run reset-project
+git clone <your-repo-url>
+cd starter-kit
+bun install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Start development:
 
-## Learn more
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## UI Components
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Button
 
-## Join the community
+```tsx
+import { Button } from "@/components/ui/Button";
 
-Join our community of developers creating universal apps.
+<Button title="Click me" onPress={() => {}} />;
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Props:
+
+- `title` (required): Button text
+- `onPress` (required): Function to call when pressed
+- `variant`: "solid" | "outline" | "soft" | "subtle" | "link"
+- `color`: Any TailwindCSS color
+- `size`: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+- `radius`: "none" | "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "full"
+- `disabled`: boolean
+- `loading`: boolean
+- `symbol`: SF Symbol name for icon
+- `style`: ViewStyle for custom styles
+
+### Input
+
+```tsx
+import { Input } from "@/components/ui/Input";
+
+<Input placeholder="Enter text" onChangeText={setText} />;
+```
+
+Props:
+
+- `variant`: "outline" | "soft" | "subtle" | "underline"
+- `color`: Any TailwindCSS color
+- `size`: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+- `radius`: "none" | "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "full"
+- All standard TextInput props are supported
+
+Sizes reference:
+
+- xs: 28px height
+- sm: 36px height
+- md: 48px height
+- lg: 56px height
+- xl: 64px height
+- 2xl: 72px height
+
+### Text
+
+```tsx
+import { Text } from "@/components/ui/Text";
+
+<Text type="body">Hello World</Text>;
+```
+
+Props:
+
+- `type`: Text style preset
+  - Basic sizes: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"
+  - Special variants: "default" | "defaultSemiBold" | "title" | "subtitle" | "body" | "caption" | "link"
+- `weight`: "ultralight" | "thin" | "light" | "normal" | "medium" | "semibold" | "bold" | "heavy" | "black"
+- `lightColor`: Color for light mode
+- `darkColor`: Color for dark mode
+
+Size reference (fontSize/lineHeight):
+
+- xs: 12px/16px
+- sm: 14px/20px
+- base/default: 16px/24px
+- lg: 18px/28px
+- xl: 20px/28px
+- 2xl: 24px/32px
+- 3xl: 30px/36px
+- 4xl: 36px/40px
+- 5xl: 48px/52px
+- 6xl: 60px/64px
+- 7xl: 72px/76px
+
+Special variants:
+
+- title: 32px/32px
+- subtitle: 20px/28px
+- body: 14px/20px
+- caption: 12px/16px
+- link: 16px/30px (includes blue color)
+- defaultSemiBold: 16px/24px with semibold weight
+
+### Icon
+
+```tsx
+import { Icon } from "@/components/ui/Icon";
+
+<Icon symbol="star.fill" size="md" color="#000" />;
+```
+
+Props:
+
+- `symbol` (required): SF Symbol name
+- `size`: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | number
+- `color`: Color string
+- `type`: "monochrome" | "hierarchical" | "palette" | "multicolor"
+
+Size reference:
+
+- xs: 14px
+- sm: 18px
+- md: 22px
+- lg: 26px
+- xl: 30px
+- 2xl: 34px
+
+## Available Colors
+
+TailwindCSS colors available for all components:
+
+- Base: black, white
+- Gray scales: slate, gray, zinc, neutral, stone
+- Colors: red, orange, amber, yellow, lime, green
+- Cool: emerald, teal, cyan, sky, blue, indigo
+- Warm: violet, purple, fuchsia, pink, rose
+
+Each color has shades from 50 (lightest) to 950 (darkest)
