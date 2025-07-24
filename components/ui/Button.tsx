@@ -106,6 +106,48 @@ const generateVariantConfig = (
     };
   }
 
+  if (color === "neutral") {
+    const bgColor = isDark
+      ? getColorValue("white", 950)
+      : getColorValue("black", 50);
+    const textColor = isDark
+      ? getColorValue("white", 50)
+      : getColorValue("black", 950);
+    const borderColor = bgColor;
+    return {
+      solid: {
+        backgroundColor: bgColor,
+        borderColor: borderColor,
+        textColor: textColor,
+        borderWidth: 1,
+      },
+      outline: {
+        backgroundColor: "transparent",
+        borderColor: borderColor,
+        textColor: bgColor,
+        borderWidth: 1,
+      },
+      soft: {
+        backgroundColor: `${bgColor}${isDark ? "20" : "10"}`,
+        borderColor: "transparent",
+        textColor: bgColor,
+        borderWidth: 0,
+      },
+      subtle: {
+        backgroundColor: `${bgColor}${isDark ? "20" : "10"}`,
+        borderColor: borderColor,
+        textColor: bgColor,
+        borderWidth: 1,
+      },
+      link: {
+        backgroundColor: "transparent",
+        borderColor: "transparent",
+        textColor: bgColor,
+        borderWidth: 0,
+      },
+    };
+  }
+
   return {
     solid: {
       backgroundColor: getColorValue(color, isDark ? 500 : 600),
