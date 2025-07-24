@@ -7,6 +7,7 @@ import {
   UIRadius,
   UISize,
 } from "@/types/ui";
+import * as Haptics from "expo-haptics";
 import { SFSymbol } from "expo-symbols";
 import React, { useEffect, useMemo, useRef } from "react";
 import { Animated, Pressable, StyleSheet, ViewStyle } from "react-native";
@@ -138,7 +139,7 @@ const generateVariantConfig = (
 };
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   onPress: () => void;
   disabled?: boolean;
   loading?: boolean;
@@ -149,6 +150,8 @@ interface ButtonProps {
   radius?: UIRadius;
   style?: ViewStyle;
   symbol?: string;
+  haptic?: boolean;
+  hapticStyle?: "light" | "medium" | "heavy";
 }
 
 export function Button({
@@ -163,6 +166,8 @@ export function Button({
   radius = "md",
   style,
   symbol,
+  haptic = false,
+  hapticStyle = "light",
 }: ButtonProps) {
   const colorScheme = useColorScheme();
   const spinValue = useRef(new Animated.Value(0)).current;
@@ -219,14 +224,32 @@ export function Button({
   const iconColor = variantConfig.textColor;
   const displayIcon = loading ? "arrow.2.circlepath" : symbol;
 
+  const shouldCenterIcon = !title && displayIcon;
+
+  const handlePress = () => {
+    if (!isDisabled) {
+      // Haptic feedback
+      if (haptic) {
+        const hapticStyleMap = {
+          light: Haptics.ImpactFeedbackStyle.Light,
+          medium: Haptics.ImpactFeedbackStyle.Medium,
+          heavy: Haptics.ImpactFeedbackStyle.Heavy,
+        };
+        Haptics.impactAsync(hapticStyleMap[hapticStyle]);
+      }
+      onPress();
+    }
+  };
+
   return (
     <Pressable
       style={({ pressed }) => [
         ...buttonStyles,
+        shouldCenterIcon && styles.iconOnly,
         isDisabled && styles.disabled,
         pressed && !isDisabled && styles.pressed,
       ]}
-      onPress={isDisabled ? undefined : onPress}
+      onPress={isDisabled ? undefined : handlePress}
       disabled={isDisabled}
     >
       {displayIcon &&
@@ -245,7 +268,7 @@ export function Button({
             color={iconColor}
           />
         ))}
-      <Text style={textStyles}>{title}</Text>
+      {title && <Text style={textStyles}>{title}</Text>}
     </Pressable>
   );
 }
@@ -257,6 +280,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 5,
     width: "100%",
+  },
+  iconOnly: {
+    justifyContent: "center",
+    gap: 0,
   },
   xs: { height: 28 },
   sm: { height: 36 },

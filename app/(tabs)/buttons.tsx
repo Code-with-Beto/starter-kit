@@ -5,6 +5,231 @@ import { ScrollView, StyleSheet, View } from "react-native";
 export default function ButtonsScreen() {
   return (
     <ScrollView style={styles.container}>
+      {/* Sizes */}
+      <View style={styles.subcontainer}>
+        <Text type="subtitle" weight="bold">
+          Sizes
+        </Text>
+        <View style={styles.buttonsContainer}>
+          <Button
+            variant="solid"
+            color="blue"
+            title="Extra Small"
+            size="xs"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="Small"
+            size="sm"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="Default"
+            size="md"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="Large"
+            size="lg"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="Extra Large"
+            size="xl"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="Extra Extra Large"
+            size="2xl"
+            onPress={() => {}}
+          />
+        </View>
+      </View>
+      {/* Radius */}
+      <View style={styles.subcontainer}>
+        <Text type="subtitle" weight="bold">
+          Radius
+        </Text>
+        <View style={styles.buttonsContainer}>
+          <Button
+            variant="solid"
+            color="blue"
+            title="None"
+            radius="none"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="XXS"
+            radius="xxs"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="XS"
+            radius="xs"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="SM"
+            radius="sm"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="MD"
+            radius="md"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="LG"
+            radius="lg"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="XL"
+            radius="xl"
+            onPress={() => {}}
+          />
+        </View>
+      </View>
+      {/* With Icon */}
+      <View style={styles.subcontainer}>
+        <Text type="subtitle" weight="bold">
+          With Icon
+        </Text>
+        <View style={styles.buttonsContainer}>
+          <Button
+            variant="solid"
+            color="blue"
+            title="Plus"
+            symbol="plus"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="Minus"
+            symbol="minus"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="Gear"
+            symbol="gear"
+            onPress={() => {}}
+          />
+        </View>
+      </View>
+      {/* Only Icon */}
+      <View style={styles.subcontainer}>
+        <Text type="subtitle" weight="bold">
+          Only Icon
+        </Text>
+        <View style={styles.buttonsContainer}>
+          <Button
+            variant="solid"
+            color="blue"
+            symbol="plus"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            symbol="minus"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            symbol="gear"
+            onPress={() => {}}
+          />
+        </View>
+      </View>
+      {/* States */}
+      <View style={styles.subcontainer}>
+        <Text type="subtitle" weight="bold">
+          States
+        </Text>
+        <View style={styles.buttonsContainer}>
+          <Button
+            variant="solid"
+            color="blue"
+            title="Loading"
+            loading={true}
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="blue"
+            title="Disabled"
+            disabled={true}
+            onPress={() => {}}
+          />
+        </View>
+      </View>
+
+      {/* Haptics */}
+      <View style={styles.subcontainer}>
+        <Text type="subtitle" weight="bold">
+          Haptics
+        </Text>
+        <View style={styles.buttonsContainer}>
+          <Button
+            variant="solid"
+            color="green"
+            title="Light Haptic"
+            haptic={true}
+            hapticStyle="light"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="orange"
+            title="Medium Haptic"
+            haptic={true}
+            hapticStyle="medium"
+            onPress={() => {}}
+          />
+          <Button
+            variant="solid"
+            color="red"
+            title="Heavy Haptic"
+            haptic={true}
+            hapticStyle="heavy"
+            onPress={() => {}}
+          />
+          <Button
+            variant="outline"
+            color="blue"
+            title="No Haptic"
+            haptic={false}
+            onPress={() => {}}
+          />
+        </View>
+      </View>
+
       {/* Red */}
       <View style={styles.subcontainer}>
         <Text type="subtitle" weight="bold">
