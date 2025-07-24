@@ -61,6 +61,24 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="minimal"
+        options={{
+          title: "Minimal",
+          headerShown: true,
+          headerTitle: "Minimal Buttons",
+          headerTitleStyle: {
+            fontSize: 32,
+            fontWeight: "bold",
+            textAlign: "left",
+          },
+
+          headerTitleAlign: "left",
+          tabBarIcon: ({ color }) => (
+            <Icon size={28} symbol="square.on.circle" color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
