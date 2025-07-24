@@ -16,6 +16,19 @@ export default function ButtonsScreen() {
             color="blue"
             title="Extra Small"
             size="xs"
+            confirmationAlert={{
+              title: "Are you sure?",
+              message:
+                "This action cannot be undone. Are you sure you want to continue?",
+              confirmText: "Yes",
+              cancelText: "No",
+              onCancel: () => {
+                console.log("Canceled");
+              },
+              onConfirm: () => {
+                console.log("Confirmed");
+              },
+            }}
             onPress={() => {}}
           />
           <Button

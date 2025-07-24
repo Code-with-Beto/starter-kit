@@ -10,7 +10,13 @@ import {
 import * as Haptics from "expo-haptics";
 import { SFSymbol } from "expo-symbols";
 import React, { useEffect, useMemo, useRef } from "react";
-import { Animated, Pressable, StyleSheet, ViewStyle } from "react-native";
+import {
+  Alert,
+  Animated,
+  Pressable,
+  StyleSheet,
+  ViewStyle,
+} from "react-native";
 import { Icon } from "./Icon";
 import { Text } from "./Text";
 
@@ -138,6 +144,15 @@ const generateVariantConfig = (
   };
 };
 
+interface ConfirmationAlert {
+  title: string;
+  message?: string;
+  confirmText?: string;
+  cancelText?: string;
+  onCancel?: () => void;
+  onConfirm?: () => void;
+}
+
 interface ButtonProps {
   title?: string;
   onPress: () => void;
@@ -152,6 +167,7 @@ interface ButtonProps {
   symbol?: string;
   haptic?: boolean;
   hapticStyle?: "light" | "medium" | "heavy";
+  confirmationAlert?: ConfirmationAlert;
 }
 
 export function Button({
@@ -168,6 +184,7 @@ export function Button({
   symbol,
   haptic = false,
   hapticStyle = "light",
+  confirmationAlert,
 }: ButtonProps) {
   const colorScheme = useColorScheme();
   const spinValue = useRef(new Animated.Value(0)).current;
@@ -237,7 +254,22 @@ export function Button({
         };
         Haptics.impactAsync(hapticStyleMap[hapticStyle]);
       }
-      onPress();
+      if (confirmationAlert) {
+        Alert.alert(confirmationAlert.title, confirmationAlert.message, [
+          {
+            text: confirmationAlert.cancelText || "Cancel",
+            style: "cancel",
+            onPress: confirmationAlert.onCancel,
+          },
+          {
+            text: confirmationAlert.confirmText || "Confirm",
+            style: "default",
+            onPress: confirmationAlert.onConfirm || onPress,
+          },
+        ]);
+      } else {
+        onPress();
+      }
     }
   };
 
