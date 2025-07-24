@@ -28,6 +28,14 @@ type ButtonVariant =
   | "ghost"
   | "link";
 
+interface ConfirmationAlert {
+  title: string;
+  message?: string;
+  confirmText?: string;
+  cancelText?: string;
+  onCancel?: () => void;
+}
+
 interface MinimalButtonProps {
   children?: React.ReactNode;
   title?: string;
@@ -41,6 +49,7 @@ interface MinimalButtonProps {
   animateOnPress?: boolean;
   haptic?: boolean;
   hapticStyle?: Haptics.ImpactFeedbackStyle;
+  confirmationAlert?: ConfirmationAlert;
 }
 
 export function MinimalButton({
@@ -56,6 +65,7 @@ export function MinimalButton({
   animateOnPress = true,
   haptic = true,
   hapticStyle = Haptics.ImpactFeedbackStyle.Light,
+  confirmationAlert,
 }: MinimalButtonProps) {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
@@ -281,7 +291,26 @@ export function MinimalButton({
 
   const handlePress = () => {
     if (!isDisabled && onPress) {
-      onPress();
+      if (confirmationAlert) {
+        Alert.alert(
+          confirmationAlert.title,
+          confirmationAlert.message,
+          [
+            {
+              text: confirmationAlert.cancelText || "Cancel",
+              style: "cancel",
+              onPress: confirmationAlert.onCancel,
+            },
+            {
+              text: confirmationAlert.confirmText || "Confirm",
+              style: "default",
+              onPress: onPress,
+            },
+          ]
+        );
+      } else {
+        onPress();
+      }
     }
   };
 

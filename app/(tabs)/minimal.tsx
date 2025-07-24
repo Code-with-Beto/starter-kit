@@ -210,6 +210,44 @@ export default function MinimalScreen() {
       </View>
 
       <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Confirmation Alerts</Text>
+        <MinimalButton
+          variant="destructive"
+          title="Delete Account"
+          symbol="trash"
+          onPress={() => console.log("Account deleted!")}
+          confirmationAlert={{
+            title: "Delete Account",
+            message: "Are you sure you want to delete your account? This action cannot be undone.",
+            confirmText: "Delete",
+            cancelText: "Cancel",
+            onCancel: () => console.log("Deletion cancelled"),
+          }}
+        />
+        <MinimalButton
+          variant="outline"
+          title="Sign Out"
+          symbol="arrow.right.square"
+          onPress={() => console.log("Signed out!")}
+          confirmationAlert={{
+            title: "Sign Out",
+            message: "Are you sure you want to sign out?",
+          }}
+        />
+        <MinimalButton
+          variant="secondary"
+          title="Reset Settings"
+          symbol="arrow.clockwise"
+          onPress={() => console.log("Settings reset!")}
+          confirmationAlert={{
+            title: "Reset Settings",
+            message: "This will restore all settings to their default values.",
+            confirmText: "Reset",
+          }}
+        />
+      </View>
+
+      <View style={styles.section}>
         <Text style={styles.sectionTitle}>Mixed Examples</Text>
         <MinimalButton
           variant="default"
